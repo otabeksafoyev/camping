@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import Navbar from "@/components/Navbar";
-
+import Footer from "@/components/Footer";
 export const metadata = {
   title: "Sayohat Blog",
   description: "Sayohat va lager haqida maqolalar",
@@ -16,6 +16,7 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

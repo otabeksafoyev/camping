@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .foother {
+    width: 100%;
+    height: auto;
+    background-color: #245d30;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    padding: 40px 0;
+  }
+  
+  .foother-kompaniya {
+    width: 90%;
+    max-width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  span {
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  .foother-1 img{
+
+width: 148px;
+height: 327px;
+  }
+
+
+
+
+  hr {
+    width: 80%;
+    border: solid 1px#245d30 ;
+    margin: 15px 0;
+  }
+  
+  
+  @media (max-width: 480px) {
+    .foother {
+      gap: 25px;
+      font-size: 13px;
+    }
+  
+    span {
+      font-size: 24px;
+    }
+  
+    .foother-kompaniya {
+      gap: 10px;
+    }
+  }
+  
