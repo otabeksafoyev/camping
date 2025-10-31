@@ -26,7 +26,7 @@ export default function BlogModal({ onClose, onSave, blog }: BlogModalProps) {
     createdAt: new Date().toISOString(),
   });
 
-  // Tahrir rejimida bo‘lsa — eski ma’lumotlarni yuklash
+  
   useEffect(() => {
     if (blog) {
       setForm({
@@ -36,7 +36,7 @@ export default function BlogModal({ onClose, onSave, blog }: BlogModalProps) {
     }
   }, [blog]);
 
-  // Input o‘zgarishi
+ 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -44,7 +44,7 @@ export default function BlogModal({ onClose, onSave, blog }: BlogModalProps) {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Saqlash tugmasi
+  
   const handleSave = () => {
     if (!form.sarlavxa.trim() || !form.kontent.trim()) {
       alert("Iltimos, sarlavha va kontentni kiriting!");

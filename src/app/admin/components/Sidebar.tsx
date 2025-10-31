@@ -6,9 +6,9 @@ import "./Sidebar.css";
 interface SidebarProps {
   isOpen: boolean;
   onToggle: () => void;
-  activeTab: "products" | "applications" | "blogs";
+  activeTab: "products" | "applications" | "blogs" | "orders"; 
   setActiveTab: React.Dispatch<
-    React.SetStateAction<"products" | "applications" | "blogs">
+    React.SetStateAction<"products" | "applications" | "blogs" | "orders">
   >;
 }
 
@@ -18,37 +18,33 @@ export default function Sidebar({
   activeTab,
   setActiveTab,
 }: SidebarProps) {
+ 
+  const menuItems = [
+    { key: "products", label: "Mahsulotlar" },
+    { key: "applications", label: "Arizalar" },
+    { key: "blogs", label: "Bloglar" },
+    { key: "orders", label: "Buyurtmalar" },
+  ];
+
   return (
     <div className={`sidebar ${isOpen ? "open" : "closed"}`}>
       <button className="toggle-btn" onClick={onToggle}>
         {isOpen ? "❮" : "❯"}
       </button>
 
-      {isOpen && (
-        <div className="sidebar-inner">
-       
-          <ul className="sidebar-menu">
+      <div className="sidebar-inner">
+        <ul className="sidebar-menu">
+          {menuItems.map((item) => (
             <li
-              className={activeTab === "products" ? "active" : ""}
-              onClick={() => setActiveTab("products")}
+              key={item.key}
+              className={activeTab === item.key ? "active" : ""}
+              onClick={() => setActiveTab(item.key as any)}
             >
-              Mahsulotlar
+              {isOpen ? item.label : item.label.charAt(0)} 
             </li>
-            <li
-              className={activeTab === "applications" ? "active" : ""}
-              onClick={() => setActiveTab("applications")}
-            >
-              Arizalar
-            </li>
-            <li
-              className={activeTab === "blogs" ? "active" : ""}
-              onClick={() => setActiveTab("blogs")}
-            >
-              Bloglar
-            </li>
-          </ul>
-        </div>
-      )}
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

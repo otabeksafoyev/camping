@@ -34,24 +34,26 @@ export default function BlogDetail() {
     getArticle();
   }, [id]);
 
-  if (!article) return <p>Yuklanmoqda...</p>;
-
   return (
     <div className="blog-detail">
-      <div className="blog-detail-img">
-        <Image
-          src={article.rasm || "/no-image.jpg"}
-          alt={article.sarlavxa}
-          width={600}
-          height={400}
-        />
-      </div>
-      <div className="blog-detail-info">
-        <h1>{article.sarlavxa}</h1>
-        <p>{article.kontent}</p>
-        <p className="author">Muallif: {article.muallif}</p>
-        <p className="date">Nashr qilingan: {new Date(article.createdAt).toLocaleDateString()}</p>
-      </div>
+      {article && (
+        <>
+          <div className="blog-detail-img">
+            <Image
+              src={article.rasm || "/no-image.jpg"}
+              alt={article.sarlavxa}
+              width={600}
+              height={400}
+            />
+          </div>
+          <div className="blog-detail-info">
+            <h1>{article.sarlavxa}</h1>
+            <p>{article.kontent}</p>
+            <p className="author">Muallif: {article.muallif}</p>
+            <p className="date">Nashr qilingan: {new Date(article.createdAt).toLocaleDateString()}</p>
+          </div>
+        </>
+      )}
     </div>
   );
 }

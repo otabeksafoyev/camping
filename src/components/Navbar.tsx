@@ -3,12 +3,25 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation"; // useRouter qo'shildi
 import "./Navbar.css";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const pathname = usePathname();
+  const router = useRouter();
+
+  // Qidiruv form submit handleri
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      // Mahsulotlar sahifasiga search query bilan yo'naltirish
+      router.push(`/mahsulotlar?search=${encodeURIComponent(searchTerm.trim())}`);
+      setMenuOpen(false);
+      setSearchTerm("");
+    }
+  };
 
   return (
     <header className="sec1">
@@ -33,9 +46,14 @@ export default function Navbar() {
         </ul>
 
         <div className="serach-savat">
-          <form className="form">
-            <input className="input" placeholder="Qidirish..." />
-            <button type="button">
+          <form className="form" onSubmit={handleSearch}>
+            <input
+              className="input"
+              placeholder="Qidirish..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button type="submit">
               <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"

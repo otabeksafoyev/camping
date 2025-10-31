@@ -10,7 +10,7 @@
   animation: fadeIn 0.3s ease;
 }
 
-/* Modal oynasi */
+
 .modal-content {
   background: #ffffff;
   border-radius: 16px;
@@ -23,14 +23,14 @@
   flex-direction: column;
   gap: 14px;
 
-  /* Scroll qo‘shamiz */
-  max-height: 90vh; /* Ekran bo‘yining 90% dan oshmasin */
-  overflow-y: auto; /* Faqat past-tepaga scroll */
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #bbb transparent; /* Firefox ranglari */
+ 
+  max-height: 90vh; 
+  overflow-y: auto;
+  scrollbar-width: thin; 
+  scrollbar-color: #bbb transparent; 
 }
 
-/* Chrome, Edge, Safari uchun scroll stili */
+
 .modal-content::-webkit-scrollbar {
   width: 7px;
 }
@@ -45,7 +45,7 @@
   background: transparent;
 }
 
-/* Pastdan tepaga kirish effekti */
+
 @keyframes slideUp {
   from {
     transform: translateY(80px);
@@ -57,7 +57,7 @@
   }
 }
 
-/* Orqa fon paydo bo‘lishi */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -67,7 +67,7 @@
   }
 }
 
-/* Sarlavhalar */
+
 .modal-content h3 {
   text-align: center;
   font-size: 1.5rem;
@@ -83,7 +83,7 @@
   font-weight: 600;
 }
 
-/* Inputlar */
+
 .modal-content input,
 .modal-content textarea {
   width: 100%;
@@ -101,7 +101,7 @@
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
 }
 
-/* Rasm inputlari */
+
 .image-input-group {
   display: flex;
   align-items: center;
@@ -112,7 +112,7 @@
   flex: 1;
 }
 
-/* ❌ O‘chirish tugmasi */
+
 .remove-btn {
   background: #ff4d4f;
   border: none;
@@ -127,7 +127,7 @@
   background: #e63e40;
 }
 
-/* ➕ Rasm qo‘shish tugmasi */
+
 .add-image-btn {
   background: #007bff;
   color: white;
@@ -143,7 +143,7 @@
   background: #005dc0;
 }
 
-/* Tugmalar */
+
 .modal-actions {
   display: flex;
   justify-content: space-between;
@@ -160,7 +160,7 @@
   transition: all 0.25s ease;
 }
 
-/* Saqlash */
+
 .save-btn {
   background-color: #28a745;
   color: white;
@@ -169,7 +169,7 @@
   background-color: #1e8a39;
 }
 
-/* Bekor qilish */
+
 .cancel-btn {
   background-color: #6c757d;
   color: white;
@@ -178,7 +178,7 @@
   background-color: #565e64;
 }
 
-/* 📱 Responsiv */
+
 @media (max-width: 480px) {
   .modal-content {
     padding: 20px;

@@ -30,7 +30,7 @@ export default function BlogsSection() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editBlog, setEditBlog] = useState<BlogWithId | null>(null);
 
-  // ✅ Ma'lumotlarni olish
+ 
   const fetchBlogs = async () => {
     const snap = await getDocs(collection(db, "bloglar"));
     const fetchedBlogs: BlogWithId[] = snap.docs.map((d) => ({
@@ -44,15 +44,15 @@ export default function BlogsSection() {
     fetchBlogs();
   }, []);
 
-  // ✅ Qo‘shish va tahrirlash
+
   const handleSave = async (data: Blog) => {
     try {
       if (editBlog) {
-        // Tahrirlash
+     
         const blogRef = doc(db, "bloglar", editBlog.id);
         await updateDoc(blogRef, { ...data });
       } else {
-        // Yangi qo‘shish
+       
         await addDoc(collection(db, "bloglar"), {
           ...data,
           createdAt: new Date().toISOString(),
@@ -66,7 +66,6 @@ export default function BlogsSection() {
     }
   };
 
-  // ✅ O‘chirish
   const handleDelete = async (id: string) => {
     try {
       await deleteDoc(doc(db, "bloglar", id));

@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import "../single.css";
+import "./single.css";
 
 interface Product {
   id: string;
@@ -45,7 +45,7 @@ export default function ProductDetailPage() {
     fetchProduct();
   }, [id]);
 
-  // Agar product hali kelmagan bo‘lsa, hech narsa render qilinmaydi
+  // Loader o'chirildi
   if (!product) return null;
 
   // ⭐ Yulduzlar

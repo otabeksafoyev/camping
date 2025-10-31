@@ -105,7 +105,7 @@ export default function ApplicationsSection() {
                 <strong>Ariza:</strong> {a.ariza}
               </p>
 
-              {/* 🔘 Delete tugmasi */}
+            
               <button
                 className="delete-btn"
                 onClick={() => handleDelete(a.id)}

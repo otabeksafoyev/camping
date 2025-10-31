@@ -61,7 +61,7 @@
   grid-column: 1 / -1;
 }
 
-/* 🔴 O‘chirish tugmasi */
+
 .delete-btn {
   background: #c0392b;
   color: #fff;
@@ -88,7 +88,7 @@
   transform: scale(0.97);
 }
 
-/* 🔹 Yuklanmoqda va xatolik holatlari */
+
 .loading,
 .error {
   text-align: center;
@@ -97,7 +97,7 @@
   margin-top: 40px;
 }
 
-/* 📱 Responsive dizayn */
+
 @media (max-width: 600px) {
   .section {
     padding: 30px 20px;

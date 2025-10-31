@@ -1,29 +1,28 @@
-
 .admin-container {
   display: flex;
   min-height: 100vh;
-  background: #f4f6fa;
+  background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
   font-family: "Poppins", sans-serif;
   transition: all 0.3s ease;
   overflow: hidden;
 }
 
-
 .sidebar {
-  background: linear-gradient(180deg, #1f1f1f, #2a2a2a);
+  background: linear-gradient(180deg, #1de9b6, #00bfa5);
   color: #fff;
-  width:250px;
+  width: 250px;
   height: 100vh;
   transition: width 0.3s ease, background 0.3s ease;
-  padding: 40px;
-  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
+  padding: 40px 20px;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
   position: fixed;
-
   top: 0;
   left: 0;
   bottom: 0;
   overflow: hidden;
   z-index: 100;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .sidebar.closed {
@@ -31,7 +30,6 @@
   text-align: center;
 }
 
-/* Sidebardagi logo va tugma */
 .logo {
   display: flex;
   align-items: center;
@@ -39,17 +37,20 @@
 }
 
 .toggle-btn {
-  background: none;
-  
+  background: rgba(255, 255, 255, 0.2);
   border: none;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
- margin-right:30px ;
-  transition: transform 0.3s ease;
+  margin-right: 10px;
+  padding: 8px;
+  margin-right: 39px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
 .toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
   transform: scale(1.2);
 }
 
@@ -60,6 +61,7 @@
   letter-spacing: 1px;
   white-space: nowrap;
   transition: opacity 0.3s ease;
+  color: #fff;
 }
 
 .sidebar.closed h2 {
@@ -74,8 +76,8 @@
 
 .sidebar ul li {
   padding: 12px 15px;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  border-radius: 8px;
+  margin-bottom: 12px;
   cursor: pointer;
   font-size: 15px;
   transition: all 0.3s ease;
@@ -84,16 +86,16 @@
 
 .sidebar ul li.active,
 .sidebar ul li:hover {
-  background: #3b3b3b;
+  background: linear-gradient(90deg, #00bfa5, #1de9b6);
   transform: translateX(3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
 
 .admin-content {
   flex: 1;
   padding: 25px;
   transition: all 0.3s ease;
-  margin-left: 250px; 
+  margin-left: 250px;
   width: calc(100% - 250px);
 }
 
@@ -102,23 +104,22 @@
   width: calc(100% - 70px);
 }
 
-
 .admin-header {
-  background: #fff;
+  background: linear-gradient(135deg, #00bfa5, #1de9b6);
   padding: 18px 25px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
   margin-bottom: 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #fff;
 }
 
 .admin-header h2 {
   margin: 0;
-  color: #333;
+  color: #fff;
 }
-
 
 .grid {
   display: grid;
@@ -127,54 +128,52 @@
 }
 
 .card {
-  background: #fff;
+  background: linear-gradient(145deg, #ffffff, #e0f2f1);
   padding: 18px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Carddagi tugmalar */
 .actions {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .actions button {
   flex: 1;
   border: none;
-  padding: 8px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .actions button:first-child {
-  background: #2563eb;
+  background: linear-gradient(90deg, #00bfa5, #1de9b6);
   color: #fff;
 }
 
 .actions button:first-child:hover {
-  background: #1d4ed8;
+  background: linear-gradient(90deg, #1de9b6, #00bfa5);
 }
 
 .actions button:last-child {
-  background: #ef4444;
+  background: linear-gradient(90deg, #ff5252, #ff1744);
   color: #fff;
 }
 
 .actions button:last-child:hover {
-  background: #dc2626;
+  background: linear-gradient(90deg, #ff1744, #ff5252);
 }
 
-/* ====== Modal ====== */
 .modal {
   position: fixed;
   inset: 0;
@@ -187,12 +186,12 @@
 }
 
 .modal-content {
-  background: #fff;
+  background: linear-gradient(145deg, #ffffff, #b2dfdb);
   padding: 25px 30px;
   border-radius: 12px;
   width: 400px;
   max-width: 100%;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   animation: fadeIn 0.25s ease;
 }
 
@@ -226,7 +225,7 @@
 
 .modal-content input:focus,
 .modal-content textarea:focus {
-  border-color: #2563eb;
+  border-color: #00bfa5;
   outline: none;
 }
 
@@ -241,36 +240,36 @@
   margin: 0 5px;
   padding: 10px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .modal-actions button:first-child {
-  background: #2563eb;
+  background: linear-gradient(90deg, #00bfa5, #1de9b6);
   color: #fff;
 }
 
 .modal-actions button:first-child:hover {
-  background: #1d4ed8;
+  background: linear-gradient(90deg, #1de9b6, #00bfa5);
 }
 
 .modal-actions button:last-child {
-  background: #e5e7eb;
+  background: #e0e0e0;
   color: #333;
 }
 
 .modal-actions button:last-child:hover {
-  background: #d1d5db;
+  background: #bdbdbd;
 }
 
-/* ====== Responsivlik ====== */
 @media (max-width: 900px) {
   .sidebar {
     position: relative;
     width: 100%;
     text-align: center;
+    border-radius: 0;
   }
 
   .admin-content {

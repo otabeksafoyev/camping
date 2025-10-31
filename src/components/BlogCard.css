@@ -1,9 +1,6 @@
-
-
-
-
-
-
+/* ========================= */
+/* BLOG CARD UCHUN ASOSIY USLUBLAR */
+/* ========================= */
 
 .blog-container {
   max-width: 1200px;
@@ -32,6 +29,17 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* 🔥 LINK ICHIDAGI CHIZIQLARNI YO‘QOTISH */
+.blog-card a {
+  text-decoration: none; /* pastidagi chiziq yo‘q */
+  color: inherit; /* matn rangi o‘z holicha */
+  display: block;
+}
+
+.blog-card a:hover {
+  text-decoration: none; /* hover paytida ham chiziq chiqmasin */
+}
+
 .blog-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
@@ -45,23 +53,28 @@
 
 .blog-info {
   padding: 15px;
+  color: #000; /* 🔥 Barcha matnlar qora bo‘ladi */
 }
 
 .blog-info h3 {
-  color: #48d667;
+  color: #000; /* Sarlavha qora */
   margin-bottom: 10px;
 }
 
 .blog-info p {
   font-size: 14px;
-  color: #555;
+  color: #000; /* Tavsif qora */
   margin-bottom: 10px;
 }
 
 .blog-info span {
   font-size: 13px;
-  color: #888;
+  color: #000; /* Muallif qora */
 }
+
+/* ========================= */
+/* BLOG DETAIL QISMI */
+/* ========================= */
 
 .blog-detail {
   display: flex;
@@ -101,7 +114,7 @@
 /* RESPONSIVE QISMI BOSHLANDI */
 /* ========================= */
 
-/* Tabletlar (768px dan kichik) */
+/* Tabletlar (992px dan kichik) */
 @media (max-width: 992px) {
   .blog-container {
     margin: 30px auto;
@@ -177,4 +190,3 @@
     font-size: 14px;
   }
 }
-

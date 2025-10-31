@@ -3,111 +3,117 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../lib/firebase";
-import "./mahsulotlar.css";
-import { FaStar, FaStarHalfAlt, FaRegStar, FaShoppingCart } from "react-icons/fa";
+import { useRouter, useSearchParams } from "next/navigation";
+import "../home.css";
 
 interface Product {
   id: string;
   name: string;
   price: number;
   discount: number;
-  description?: string;
-  category?: string;
-  rating?: number;
-  img?: string[];
-  images?: string[];
+  img: string[];
+  rating: number;
+  description: string;
+  category: string;
 }
 
-interface BasketItem extends Product {
+interface BasketItem {
+  id: string;
+  name: string;
+  price: number;
   qty: number;
+  img?: string[];
 }
 
 export default function MahsulotlarPage() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const search = searchParams?.get("search")?.toLowerCase() || "";
 
   useEffect(() => {
     const fetchProducts = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "products"));
-        const data = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as Product[];
-        setProducts(data);
-      } catch (error) {
-        console.error("Mahsulotlarni olishda xatolik:", error);
-      } finally {
-        setLoading(false);
-      }
+      const snap = await getDocs(collection(db, "products"));
+      const list = snap.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Product[];
+      setProducts(list);
     };
     fetchProducts();
   }, []);
 
-  const renderStars = (rating: number = 0) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
+  useEffect(() => {
+    if (!search) {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter((p) =>
+        p.name.toLowerCase().includes(search)
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [search, products]);
 
-    for (let i = 0; i < fullStars; i++) stars.push(<FaStar key={i} className="star" />);
-    if (hasHalfStar) stars.push(<FaStarHalfAlt key="half" className="star" />);
-    while (stars.length < 5)
-      stars.push(<FaRegStar key={`empty-${stars.length}`} className="star" />);
-    return stars;
-  };
-
-  const calcDiscountPercent = (price: number, discount: number) => {
-    if (!price || !discount) return 0;
-    return Math.round(((price - discount) / price) * 100);
-  };
-
-  const handleAddToCart = (product: Product) => {
+  const handleAddToBasket = (product: Product) => {
     const basket: BasketItem[] = JSON.parse(localStorage.getItem("basket") || "[]");
+    const existing = basket.find((b) => b.id === product.id);
 
-    const existing = basket.find((p) => p.id === product.id);
     if (existing) {
       existing.qty += 1;
     } else {
-      basket.push({ ...product, qty: 1 });
+      basket.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        qty: 1,
+        img: product.img,
+      });
     }
 
     localStorage.setItem("basket", JSON.stringify(basket));
-    alert("Mahsulot savatga qo‘shildi!");
+    alert("Mahsulot savatchaga qo‘shildi 🛒");
   };
 
-  if (loading)
-    return <p style={{ textAlign: "center", marginTop: "50px" }}>Yuklanmoqda...</p>;
-
   return (
-    <div className="cards-container">
-      {products.map((product) => {
-        const imageList = product.images || product.img || [];
-        const mainImage = imageList[0] || "/placeholder.png";
+    <div className="home-container">
+      <h2 className="section-title">Barcha mahsulotlar</h2>
 
-        return (
-          <div key={product.id} className="card">
-            <img src={mainImage} alt={product.name} className="card-img" />
-            <h3 className="card-name">{product.name}</h3>
+      <div className="product-grid">
+        {filteredProducts.map((p) => {
+          const img = p.img?.[0] || "/placeholder.png";
+          const oldPrice = p.price;
+          const newPrice = oldPrice - (oldPrice * p.discount) / 100;
 
-            <div className="rating">
-              {renderStars(product.rating)}
-              <span>{product.rating?.toFixed(1) || "0.0"}/5</span>
+          return (
+            <div
+              className="product-card"
+              key={p.id}
+              onClick={() => router.push(`/products/${p.id}`)}
+            >
+              <img src={img} alt={p.name} className="product-img" />
+
+              <h4>{p.name}</h4>
+              <div className="price">
+                <span className="new">${newPrice.toFixed(2)}</span>
+                <span className="old">${oldPrice.toFixed(2)}</span>
+              </div>
+              <div className="rating">⭐ {p.rating}</div>
+
+              <button
+                className="cart-btn full-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAddToBasket(p);
+                }}
+              >
+                🛒
+              </button>
             </div>
-
-            <div className="price-box">
-              <span className="new-price">${product.discount}</span>
-              <span className="old-price">${product.price}</span>
-              <span className="discount-badge">
-                -{calcDiscountPercent(product.price, product.discount)}%
-              </span>
-            </div>
-
-            <button className="cart-btn" onClick={() => handleAddToCart(product)}>
-              <FaShoppingCart /> Savatga
-            </button>
-          </div>
-        );
-      })}
+          );
+        })}
+        {filteredProducts.length === 0 && <p>Hech qanday mahsulot topilmadi.</p>}
+      </div>
     </div>
   );
 }

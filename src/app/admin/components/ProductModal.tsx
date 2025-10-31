@@ -32,7 +32,7 @@ export default function ProductModal({
   const [description, setDescription] = useState("");
   const [img, setImg] = useState<string[]>([""]);
 
-  // 🔄 product tahrirlash rejimida formani to‘ldirish
+ 
   useEffect(() => {
     if (product) {
       setName(product.name || "");
@@ -43,7 +43,7 @@ export default function ProductModal({
       setDescription(product.description || "");
       setImg(product.img?.length ? product.img : [""]);
     } else {
-      // 🔁 Yangi mahsulot bo‘lsa formani tozalash
+
       setName("");
       setCategory("");
       setPrice(0);
@@ -54,7 +54,7 @@ export default function ProductModal({
     }
   }, [product]);
 
-  // 🖼️ Rasm inputlarini boshqarish
+ 
   const handleImageChange = (index: number, value: string) => {
     const updated = [...img];
     updated[index] = value;
@@ -65,7 +65,7 @@ export default function ProductModal({
   const removeImageInput = (index: number) =>
     setImg(img.filter((_, i) => i !== index));
 
-  // 💾 Saqlash tugmasi
+  
   const handleSubmit = () => {
     if (!name.trim() || price <= 0) {
       alert("Iltimos, mahsulot nomi va narxni to‘g‘ri kiriting!");
@@ -79,7 +79,7 @@ export default function ProductModal({
       discount,
       description: description.trim(),
       rating,
-      img: img.filter((url) => url.trim() !== ""), // bo‘sh URL’larni olib tashlaydi
+      img: img.filter((url) => url.trim() !== ""), 
     };
 
     onSave(cleanData);

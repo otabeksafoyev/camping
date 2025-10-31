@@ -19,7 +19,7 @@ interface Product {
   description: string;
   discount: number;
   rating: number;
-  img?: string[]; // 🔹 optional qildik
+  img?: string[]; 
 }
 
 interface ProductWithId extends Product {
@@ -31,7 +31,7 @@ export default function ProductsSection() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editProduct, setEditProduct] = useState<ProductWithId | null>(null);
 
-  // 🔹 Firestore'dan mahsulotlarni olish
+ 
   const fetchProducts = async () => {
     const snapshot = await getDocs(collection(db, "products"));
     const fetchedProducts: ProductWithId[] = snapshot.docs.map((docu) => ({
@@ -45,7 +45,7 @@ export default function ProductsSection() {
     fetchProducts();
   }, []);
 
-  // 🔹 Mahsulotni saqlash (yangi qo‘shish yoki tahrirlash)
+ 
   const handleSave = async (productData: Product) => {
     if (editProduct) {
       const productRef = doc(db, "products", editProduct.id);
@@ -64,7 +64,7 @@ export default function ProductsSection() {
     setEditProduct(null);
   };
 
-  // 🔹 Mahsulotni o‘chirish
+  
   const handleDelete = async (id: string) => {
     await deleteDoc(doc(db, "products", id));
     setProducts((prev) => prev.filter((p) => p.id !== id));

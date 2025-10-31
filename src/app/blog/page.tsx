@@ -20,7 +20,7 @@ export default function BlogPage() {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "bloglar")); // collection nomi
+        const querySnapshot = await getDocs(collection(db, "bloglar")); 
         const data = querySnapshot.docs.map((doc) => {
           const docData = doc.data() as Omit<Article, "id">;
           return {
@@ -40,7 +40,8 @@ export default function BlogPage() {
 
   return (
     <div className="blog-container">
-      <h1>Sayohat va Lager Blogi</h1>
+
+      < h1> Sayohat va Lager Blogi</h1>
       <div className="blog-grid">
         {articles.map((a) => (
           <BlogCard key={a.id} article={a} />

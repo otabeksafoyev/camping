@@ -21,12 +21,12 @@ export default function BlogCard({ article }: { article: Article }) {
     <div className="blog-card">
       <Link href={`/blog/${article.id}`}>
         <Image
-          src={article.rasm || "/no-image.jpg"} // fallback rasm
+          src={article.rasm || "/no-image.jpg"} 
           alt={article.sarlavxa || "Blog rasmi"}
           width={400}
           height={250}
           className="blog-img"
-          // blur effect uchun loading='lazy' yoki placeholder='blur' qo‘shish mumkin
+        
         />
         <div className="blog-info">
           <h3>{article.sarlavxa || "Sarlavha mavjud emas"}</h3>
