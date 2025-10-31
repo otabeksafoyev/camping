@@ -1,22 +1,25 @@
+"use client";
 import "../styles/globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-export const metadata = {
-  title: "Sayohat Blog",
-  description: "Sayohat va lager haqida maqolalar",
-};
+import { usePathname } from "next/navigation";
+
+
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+  const isAdminPage = pathname.startsWith("/admin");
+
   return (
     <html lang="uz" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <Navbar />
+        {!isAdminPage && <Navbar />}
         {children}
-        <Footer />
+        {!isAdminPage && <Footer />}
       </body>
     </html>
   );

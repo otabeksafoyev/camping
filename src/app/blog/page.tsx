@@ -7,11 +7,11 @@ import BlogCard from "@/components/BlogCard";
 
 interface Article {
   id: string;
-  title: string;
-  author: string;
-  description: string;
+  sarlavxa: string;
+  muallif: string;
+  kontent?: string;
   rasm: string;
-  thubnail?: string;
+  createdAt: string;
 }
 
 export default function BlogPage() {
@@ -19,12 +19,22 @@ export default function BlogPage() {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const querySnapshot = await getDocs(collection(db, "articles"));
-      const data = querySnapshot.docs.map(
-        (doc) => ({ id: doc.id, ...doc.data() } as Article)
-      );
-      setArticles(data);
+      try {
+        const querySnapshot = await getDocs(collection(db, "bloglar")); // collection nomi
+        const data = querySnapshot.docs.map((doc) => {
+          const docData = doc.data() as Omit<Article, "id">;
+          return {
+            id: doc.id,
+            ...docData,
+          };
+        });
+
+        setArticles(data);
+      } catch (error) {
+        console.error("Ma'lumotlarni olishda xatolik:", error);
+      }
     };
+
     fetchArticles();
   }, []);
 

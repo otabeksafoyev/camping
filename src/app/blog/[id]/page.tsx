@@ -3,15 +3,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase"
+import { db } from "@/lib/firebase";
 import Image from "next/image";
 
 interface Article {
   id?: string;
-  title: string;
-  author: string;
-  description: string;
+  sarlavxa: string;
+  muallif: string;
+  kontent?: string;
   rasm: string;
+  createdAt: string;
 }
 
 export default function BlogDetail() {
@@ -21,10 +22,13 @@ export default function BlogDetail() {
   useEffect(() => {
     const getArticle = async () => {
       if (!id) return;
-      const ref = doc(db, "articles", id as string);
+      const ref = doc(db, "bloglar", id as string);
       const snap = await getDoc(ref);
       if (snap.exists()) {
-        setArticle(snap.data() as Article);
+        setArticle({
+          id: snap.id,
+          ...snap.data() as Omit<Article, "id">
+        });
       }
     };
     getArticle();
@@ -37,15 +41,16 @@ export default function BlogDetail() {
       <div className="blog-detail-img">
         <Image
           src={article.rasm || "/no-image.jpg"}
-          alt={article.title}
+          alt={article.sarlavxa}
           width={600}
           height={400}
         />
       </div>
       <div className="blog-detail-info">
-        <h1>{article.title}</h1>
-        <p>{article.description}</p>
-        <p className="author">Muallif: {article.author}</p>
+        <h1>{article.sarlavxa}</h1>
+        <p>{article.kontent}</p>
+        <p className="author">Muallif: {article.muallif}</p>
+        <p className="date">Nashr qilingan: {new Date(article.createdAt).toLocaleDateString()}</p>
       </div>
     </div>
   );

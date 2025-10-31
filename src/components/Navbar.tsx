@@ -1,34 +1,40 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "./Navbar.css";
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
   return (
-    <div className="sec1">
+    <header className="sec1">
       <div className="sec1-con">
-        <Image src="/1-removebg 1.svg" alt="logo" width={80} height={60} />
-        <ul className="nav-ul">
+        <div className="logo">
+          <Image src="/1-removebg 1.svg" alt="logo" width={80} height={60} />
+        </div>
+
+        <ul className={`nav-ul ${menuOpen ? "open" : ""}`}>
           <li className={pathname === "/" ? "active" : ""}>
             <Link href="/">Bosh sahifa</Link>
           </li>
           <li className={pathname === "/mahsulotlar" ? "active" : ""}>
             <Link href="/mahsulotlar">Mahsulotlar</Link>
           </li>
-          <li className={pathname === "/aloqa" ? "active" : ""}>
-            <Link href="/aloqa">Aloqa</Link>
-          </li>
           <li className={pathname === "/blog" ? "active" : ""}>
             <Link href="/blog">Blog</Link>
+          </li>
+          <li className={pathname === "/aloqa" ? "active" : ""}>
+            <Link href="/aloqa">Aloqa</Link>
           </li>
         </ul>
 
         <div className="serach-savat">
           <form className="form">
+            <input className="input" placeholder="Qidirish..." />
             <button type="button">
               <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -40,17 +46,19 @@ export default function Navbar() {
                 ></path>
               </svg>
             </button>
-            <input className="input" placeholder="Search for products..." required type="text" />
-            <button className="reset" type="reset">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            </button>
           </form>
 
-          <Image className="savatismi" src="/basket.svg" alt="savat" width={35} height={36} />
+          <Link href="/basket">
+            <Image className="savatismi" src="/basket.svg" alt="savat" width={35} height={36} />
+          </Link>
+
+          <div className={`burger ${menuOpen ? "active" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }

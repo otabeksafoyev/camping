@@ -1,66 +1,129 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.foother {
+  width: 100%;
+  background-color: #245d30;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 60px 20px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+
+/* Logo bo‘limi */
+.foother-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.foother-1 img {
+  width: 130px;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.foother-1 img:hover {
+  transform: scale(1.05);
+}
+
+/* Har bir ustun */
+.foother-kompaniya {
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  color: #f1f1f1;
+}
+
+
+
+
+
+
+
+
+.foother-kompaniya h2 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #e0e0e0;
+}
+
+.foother-kompaniya span {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.foother-kompaniya hr {
+  width: 100%;
+  border: none;
+  margin: 6px 0;
+}
+
+/* Hover effekti */
+.foother-kompaniya h2:hover {
+  color: #d6ffd0;
+  cursor: default;
+}
+
+/* Responsiv — planshet */
+@media (max-width: 992px) {
   .foother {
-    width: 100%;
-    height: auto;
-    background-color: #245d30;
-    display: flex;
-    gap: 40px;
     justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 14px;
-    padding: 40px 0;
+    text-align: center;
   }
-  
+
   .foother-kompaniya {
-    width: 90%;
-    max-width: 300px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 15px;
-  }
-  
-  span {
-    font-size: 28px;
-    font-weight: 600;
-  }
-  
-  .foother-1 img{
-
-width: 148px;
-height: 327px;
   }
 
-
-
-
-  hr {
-    width: 80%;
-    border: solid 1px#245d30 ;
-    margin: 15px 0;
+  .foother-kompaniya span {
+    font-size: 18px;
   }
-  
-  
-  @media (max-width: 480px) {
-    .foother {
-      gap: 25px;
-      font-size: 13px;
-    }
-  
-    span {
-      font-size: 24px;
-    }
-  
-    .foother-kompaniya {
-      gap: 10px;
-    }
+
+  .foother-1 img {
+    width: 110px;
   }
-  
+}
+
+
+@media (max-width: 600px) {
+  .foother {
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    padding: 40px 10px;
+  }
+
+  .foother-kompaniya {
+    align-items: center;
+    text-align: center;
+    width: 90%;
+  }
+
+  .foother-kompaniya h2 {
+    font-size: 15px;
+  }
+
+  .foother-kompaniya span {
+    font-size: 17px;
+  }
+
+  .foother-kompaniya hr {
+    width: 60%;
+    margin: 4px auto;
+  }
+}

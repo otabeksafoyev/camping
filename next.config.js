@@ -1,14 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: {
-      remotePatterns: [
-        {
-          protocol: "https",
-          hostname: "assets.asaxiy.uz",
-        },
-      ],
-    },
-  };
-  
-  module.exports = nextConfig;
-  
+  images: {
+    domains: ["jet-back.bank.uz", "xabar.uz"],
+  },
+};
+
+export default nextConfig;
